@@ -196,13 +196,10 @@ body {
     display: flex;
     align-items: center;
     padding: 100px 0 80px;
-    background: var(--gradient-main-bg); /* Este será coberto pelo vídeo, mas serve como fallback */
+    background: var(--gradient-main-bg);
     position: relative;
     overflow: hidden;
 }
-
-/* Removido o background de grãos para não conflitar com o vídeo */
-/* .hero::before { ... } */
 
 .hero-container {
     max-width: 1200px;
@@ -288,7 +285,7 @@ body {
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     animation: float 3s ease-in-out infinite;
-    background-color: rgba(0,0,0,0.2); /* Fundo para o iframe enquanto carrega */
+    background-color: rgba(0,0,0,0.2); 
 }
 
 .hero-main-video {
@@ -1014,7 +1011,7 @@ body.light-mode {
     --gradient-section-bg-1: var(--light-section-bg);
     --gradient-section-bg-2: #f9fafb;
     --text-white: var(--light-text);
-    --text-light-gray: var(--light-gray-text);
+    --text-light-gray: var(--light-gray-text); 
     --text-medium-gray: var(--light-gray-text); 
     --text-dark-gray: var(--light-gray-text); 
     --dark-blue-1: #e0e0e0; 
@@ -1874,32 +1871,30 @@ body.light-mode .highlight-option .option-text {
 }
 
 /* ===================================================== */
-/* === CORREÇÃO: VÍDEO DE FUNDO (CINEMAGRAPH) - V2 === */
+/* === CÓDIGO PARA VÍDEO DE FUNDO E DIVISOR DE FORMA === */
 /* ===================================================== */
 
-/* O "palco" principal da seção com vídeo */
+/* --- Estilos para o Fundo com Vídeo (Cinemagraph) --- */
 .section-with-video-bg {
-    position: relative; /* Essencial para criar o empilhamento */
-    overflow: hidden;   /* Garante que nada vaze para fora da seção */
+    position: relative;
+    overflow: hidden;
 }
 
-/* A camada do vídeo, enviada para o fundo */
 .video-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2; /* <<< A MÁGICA: um valor negativo joga ele para trás */
+    z-index: -2;
 }
 
 .video-background video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cobre todo o espaço sem distorcer */
+    object-fit: cover;
 }
 
-/* A camada do filtro escuro, que fica em cima do vídeo mas atrás do conteúdo */
 .section-with-video-bg::after {
     content: '';
     position: absolute;
@@ -1907,13 +1902,32 @@ body.light-mode .highlight-option .option-text {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Ajuste o último número (0.8) para deixar o vídeo mais claro ou escuro */
     background-color: rgba(26, 26, 46, 0.8);
-    z-index: -1; /* <<< Fica na frente do vídeo, mas atrás do conteúdo */
+    z-index: -1;
 }
 
-/* A camada do conteúdo, que precisa ser trazida para frente */
 .content-overlay {
-    position: relative; /* Necessário para que o z-index funcione */
-    z-index: 1;         /* Garante que esta camada fique na frente de tudo */
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Estilos para o Divisor de Forma (SVG) --- */
+.custom-shape-divider-top-1750342335 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1750342335 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 47px;
+}
+
+.custom-shape-divider-top-1750342335 .shape-fill {
+    fill: #1A1A2E;
 }
