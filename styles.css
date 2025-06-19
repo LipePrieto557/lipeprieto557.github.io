@@ -1870,23 +1870,26 @@ body.light-mode .highlight-option .option-text {
     color: var(--light-text); 
 }
 
-/* ===================================================== */
-/* === CÓDIGO PARA VÍDEO DE FUNDO E DIVISOR DE FORMA === */
-/* ===================================================== */
+/* ======================================================== */
+/* === CORREÇÃO CSS v3: Forçando o Empilhamento Positivo === */
+/* ======================================================== */
 
-/* --- Estilos para o Fundo com Vídeo (Cinemagraph) --- */
+/* O "palco" principal da seção com vídeo */
 .section-with-video-bg {
     position: relative;
     overflow: hidden;
+    /* Adicionado para garantir que o contexto de empilhamento seja criado */
+    z-index: 0; 
 }
 
+/* A camada do vídeo, no fundo */
 .video-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
+    z-index: 1; /* Camada 1 (a mais baixa) */
 }
 
 .video-background video {
@@ -1894,7 +1897,8 @@ body.light-mode .highlight-option .option-text {
     height: 100%;
     object-fit: cover;
 }
-
+    
+/* A camada do filtro escuro, em cima do vídeo */
 .section-with-video-bg::after {
     content: '';
     position: absolute;
@@ -1902,32 +1906,13 @@ body.light-mode .highlight-option .option-text {
     left: 0;
     width: 100%;
     height: 100%;
+    /* Ajuste o último número (0.8) para deixar mais claro ou escuro */
     background-color: rgba(26, 26, 46, 0.8);
-    z-index: -1;
+    z-index: 2; /* Camada 2 (meio) */
 }
-
+    
+/* A camada do conteúdo, na frente de tudo */
 .content-overlay {
-    position: relative;
-    z-index: 1;
-}
-
-/* --- Estilos para o Divisor de Forma (SVG) --- */
-.custom-shape-divider-top-1750342335 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-}
-
-.custom-shape-divider-top-1750342335 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 47px;
-}
-
-.custom-shape-divider-top-1750342335 .shape-fill {
-    fill: #1A1A2E;
+    position: relative; /* Importante para que ele não ignore o z-index */
+    z-index: 3; /* Camada 3 (a mais alta) */
 }
