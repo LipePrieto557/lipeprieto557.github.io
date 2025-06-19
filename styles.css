@@ -1873,30 +1873,33 @@ body.light-mode .highlight-option .option-text {
     color: var(--light-text); 
 }
 
-/* ============================================== */
-/* === ESTILOS PARA FUNDO COM VÍDEO (CINEMAGRAPH) */
-/* ============================================== */
+/* ===================================================== */
+/* === CORREÇÃO: VÍDEO DE FUNDO (CINEMAGRAPH) - V2 === */
+/* ===================================================== */
 
+/* O "palco" principal da seção com vídeo */
 .section-with-video-bg {
-    position: relative;
-    overflow: hidden;
+    position: relative; /* Essencial para criar o empilhamento */
+    overflow: hidden;   /* Garante que nada vaze para fora da seção */
 }
 
+/* A camada do vídeo, enviada para o fundo */
 .video-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: -2; /* <<< A MÁGICA: um valor negativo joga ele para trás */
 }
 
 .video-background video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Cobre todo o espaço sem distorcer */
 }
 
+/* A camada do filtro escuro, que fica em cima do vídeo mas atrás do conteúdo */
 .section-with-video-bg::after {
     content: '';
     position: absolute;
@@ -1904,11 +1907,13 @@ body.light-mode .highlight-option .option-text {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(26, 26, 46, 0.85); 
-    z-index: 2;
+    /* Ajuste o último número (0.8) para deixar o vídeo mais claro ou escuro */
+    background-color: rgba(26, 26, 46, 0.8);
+    z-index: -1; /* <<< Fica na frente do vídeo, mas atrás do conteúdo */
 }
 
+/* A camada do conteúdo, que precisa ser trazida para frente */
 .content-overlay {
-    position: relative;
-    z-index: 3;
+    position: relative; /* Necessário para que o z-index funcione */
+    z-index: 1;         /* Garante que esta camada fique na frente de tudo */
 }
