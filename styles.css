@@ -1970,12 +1970,13 @@ body, a, button, [type="submit"], input, select {
     left: 0;
     width: 40px;
     height: 40px;
-    border: 2px solid var(--primary-purple); /* Borda na cor principal */
+    border: 2px solid var(--primary-purple);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 9998; /* Fica logo atrás do ponto central */
-    transition: transform 0.4s ease-out, opacity 0.3s, background-color 0.3s;
+    z-index: 9998;
+    /* MUDANÇA AQUI: removemos a transição do transform */
+    transition: opacity 0.3s, background-color 0.3s;
 }
 
 /* 4. Efeito de HOVER: O que acontece quando o mouse está sobre um link/botão */
