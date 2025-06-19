@@ -1938,3 +1938,19 @@ body.light-mode .highlight-option .option-text {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
+
+/* ======================================================= */
+/* === CURSOR TEMÁTICO INTERATIVO (GOTA E BOLHA) === */
+/* ======================================================= */
+
+/* 1. Define a GOTA como o cursor padrão para a página inteira */
+body {
+    /* Usando o caminho exato que você especificou */
+    cursor: url('/PowerLavaCar/mouse/cursor-gota.png'), auto;
+}
+
+/* 2. Define a BOLHA para elementos clicáveis (efeito de hover) */
+a, button, [type="submit"], input[type="checkbox"], select, .flip-card, .nav-link, .cta-button, .social-link {
+    /* A imagem da bolha aparece sobre estes itens, com a mãozinha como alternativa */
+    cursor: url('/PowerLavaCar/mouse/cursor-bolha.png'), pointer;
+}
