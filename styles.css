@@ -1918,5 +1918,6 @@ body.light-mode .highlight-option .option-text {
 }
 
 .custom-shape-divider-top-1750342335 .shape-fill {
-    fill: var(--gradient-section-bg-1); /* Cor da seção de baixo */
+    /* Usamos a cor inicial do gradiente da seção de serviços */
+    fill: var(--dark-blue-3); 
 }
