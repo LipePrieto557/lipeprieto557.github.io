@@ -190,17 +190,6 @@ body {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* --- Hero Section --- */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 100px 0 80px;
-    background: var(--gradient-main-bg);
-    position: relative;
-    overflow: hidden;
-}
-
 .hero-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -213,6 +202,12 @@ body {
 
 .hero-content {
     animation: fadeInUp 1s ease;
+}
+
+.hero-title, 
+.hero-slogan, 
+.hero-description {
+    text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .hero-title {
@@ -771,7 +766,6 @@ body {
     border: 2px solid var(--primary-purple); 
     border-radius: 4px; 
     margin-right: 10px; 
-    cursor: pointer;
     position: relative;
     vertical-align: middle; 
     flex-shrink: 0; 
@@ -832,7 +826,6 @@ body {
     font-size: 1.1rem;
     font-weight: 600;
     border-radius: 10px;
-    cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -892,7 +885,6 @@ body {
     font-size: 1rem;
     font-weight: 600;
     border-radius: 10px;
-    cursor: pointer;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
@@ -1055,7 +1047,6 @@ body.light-mode {
 .theme-switcher {
     font-size: 1.2rem;
     color: var(--text-white);
-    cursor: pointer;
     padding: 5px;
     transition: all 0.3s ease;
     margin-left: 15px;
@@ -1094,7 +1085,6 @@ body.light-mode {
 .options-list label {
     display: flex;
     align-items: center;
-    cursor: pointer;
     font-size: 1.1rem;
     color: var(--text-light-gray); 
 }
@@ -1103,7 +1093,6 @@ body.light-mode {
     width: 20px;
     height: 20px;
     accent-color: var(--primary-purple);
-    cursor: pointer;
 }
 .package-total {
     background: rgba(0,0,0,0.1);
@@ -1605,7 +1594,7 @@ body.light-mode {
     .container {
         padding: 0 15px;
     }
-    .hero {
+    .hero-parallax {
         padding: 80px 0 60px;
     }
     .hero-title {
@@ -1871,50 +1860,46 @@ body.light-mode .highlight-option .option-text {
 }
 
 /* ======================================================== */
-/* === CORREÇÃO CSS v3: Forçando o Empilhamento Positivo === */
+/* === EFEITO PARALLAX, DIVISOR E AJUSTES DE TEXTO === */
 /* ======================================================== */
 
-.section-with-video-bg {
+/* --- EFEITO PARALLAX DE MOUSE NA HERO SECTION --- */
+.hero-parallax {
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    z-index: 0; 
 }
 
-.video-background {
+.parallax-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
     z-index: 1;
+    background: var(--gradient-main-bg);
 }
 
-.video-background video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-    
-.section-with-video-bg::after {
+.hero-parallax::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(26, 26, 46, 0.9);
+    background-color: rgba(26, 26, 46, 0.8);
     z-index: 2;
 }
-    
-.content-overlay {
+
+.hero-parallax .hero-container {
     position: relative;
     z-index: 3;
 }
 
-/* ========================================================== */
-/* === DIVISOR DE FORMA (SVG) COM EFEITO VIDRO FOSCO === */
-/* ========================================================== */
-
+/* --- DIVISOR DE FORMA (SVG) --- */
 .custom-shape-divider-top-1750342335 {
     position: absolute;
     top: 0;
@@ -1922,6 +1907,7 @@ body.light-mode .highlight-option .option-text {
     width: 100%;
     overflow: hidden;
     line-height: 0;
+    z-index: 4; /* Para ficar na frente do conteúdo da Hero */
 }
 
 .custom-shape-divider-top-1750342335 svg {
@@ -1932,9 +1918,5 @@ body.light-mode .highlight-option .option-text {
 }
 
 .custom-shape-divider-top-1750342335 .shape-fill {
-    /* Cor de fundo semi-transparente para o efeito de vidro */
-    fill: rgba(26, 26, 46, 0.5); 
-    /* A mágica do desfoque */
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    fill: var(--gradient-section-bg-1); /* Cor da seção de baixo */
 }
