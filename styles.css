@@ -1938,3 +1938,49 @@ body.light-mode .highlight-option .option-text {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
+
+/* ======================================= */
+/* === EFEITOS DE CURSOR CUSTOMIZADO === */
+/* ======================================= */
+
+/* 1. Esconde o cursor padrão do navegador */
+body, a, button, [type="submit"], input, select {
+    cursor: none;
+}
+
+/* 2. Estilo do ponto central (o que substitui a seta) */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-purple); /* Cor principal do seu site */
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* Centraliza o ponto no cursor */
+    pointer-events: none; /* Garante que o cursor não bloqueie cliques */
+    z-index: 9999; /* Garante que fique na frente de tudo */
+    transition: transform 0.2s ease-out;
+}
+
+/* 3. Estilo do círculo que segue o ponto */
+.cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--primary-purple); /* Borda na cor principal */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9998; /* Fica logo atrás do ponto central */
+    transition: transform 0.4s ease-out, opacity 0.3s, background-color 0.3s;
+}
+
+/* 4. Efeito de HOVER: O que acontece quando o mouse está sobre um link/botão */
+.cursor-follower.hovered {
+    transform: translate(-50%, -50%) scale(1.5); /* Aumenta o círculo */
+    background-color: rgba(139, 92, 246, 0.2); /* Preenche com uma cor suave */
+    opacity: 0.8;
+}
