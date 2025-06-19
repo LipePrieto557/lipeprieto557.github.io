@@ -335,3 +335,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
+/* ======================================= */
+/* === LÓGICA DO CURSOR CUSTOMIZADO === */
+/* ======================================= */
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Só executa se não for um dispositivo de toque (celular/tablet)
+    if (window.matchMedia("(pointer: fine)").matches) {
+        
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorFollower = document.querySelector('.cursor-follower');
+
+        // Faz o cursor seguir o mouse
+        window.addEventListener('mousemove', e => {
+            // GSAP é mais suave, vamos usá-lo já que está no projeto!
+            gsap.to(cursorDot, { duration: 0.2, x: e.clientX, y: e.clientY });
+            gsap.to(cursorFollower, { duration: 0.4, x: e.clientX, y: e.clientY });
+        });
+
+        // Adiciona o efeito de HOVER em links e botões
+        const interactiveElements = document.querySelectorAll('a, button, [type="submit"], .service-card, .flip-card');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorFollower.classList.add('hovered');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorFollower.classList.remove('hovered');
+            });
+        });
+    }
+});
