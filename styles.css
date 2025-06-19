@@ -1934,3 +1934,10 @@ body.light-mode .highlight-option .option-text {
 .custom-shape-divider-top-1750342335 .shape-fill {
     fill: #1A1A2E;
 }
+
+/* OPÇÃO 1: EFEITO FADE PARA TRANSIÇÃO DE SEÇÃO */
+.hero.section-with-video-bg .content-overlay {
+    /* Cria um gradiente na parte de baixo do conteúdo */
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
