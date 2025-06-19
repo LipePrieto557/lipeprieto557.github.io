@@ -1985,3 +1985,18 @@ body, a, button, [type="submit"], input, select {
     background-color: rgba(139, 92, 246, 0.2); /* Preenche com uma cor suave */
     opacity: 0.8;
 }
+
+/* ======================================================= */
+/* === CURSOR TEMÁTICO INTERATIVO (GOTA NA PÁGINA, BOLHA NO HOVER) === */
+/* ======================================================= */
+
+/* 1. A GOTA é o cursor padrão para o site todo */
+body {
+    cursor: url('/PowerLavaCar/mouse/cursor-gota.png'), auto;
+}
+
+/* 2. A BOLHA aparece quando passamos o mouse sobre elementos clicáveis */
+a, button, [type="submit"], input[type="checkbox"], select, .flip-card, .nav-link, .cta-button, .social-link {
+    /* A imagem da bolha como cursor principal para estes itens */
+    cursor: url('/PowerLavaCar/mouse/cursor-bolha.png'), pointer;
+}
