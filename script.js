@@ -351,7 +351,8 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('mousemove', e => {
             // GSAP é mais suave, vamos usá-lo já que está no projeto!
             gsap.to(cursorDot, { duration: 0.2, x: e.clientX, y: e.clientY });
-            gsap.to(cursorFollower, { duration: 0.4, x: e.clientX, y: e.clientY });
+            // AQUI ESTÁ O AJUSTE: o cursor maior agora responde mais rápido
+            gsap.to(cursorFollower, { duration: 0.2, x: e.clientX, y: e.clientY });
         });
 
         // Adiciona o efeito de HOVER em links e botões
