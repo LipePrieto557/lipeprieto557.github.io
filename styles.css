@@ -1911,9 +1911,9 @@ body.light-mode .highlight-option .option-text {
     z-index: 3;
 }
 
-/* =============================================== */
-/* === CSS PARA O DIVISOR DE FORMA (SVG) === */
-/* =============================================== */
+/* ========================================================== */
+/* === DIVISOR DE FORMA (SVG) COM EFEITO VIDRO FOSCO === */
+/* ========================================================== */
 
 .custom-shape-divider-top-1750342335 {
     position: absolute;
@@ -1932,12 +1932,9 @@ body.light-mode .highlight-option .option-text {
 }
 
 .custom-shape-divider-top-1750342335 .shape-fill {
-    fill: #0f3460;
-}
-
-/* OPÇÃO 1: EFEITO FADE PARA TRANSIÇÃO DE SEÇÃO */
-.hero.section-with-video-bg .content-overlay {
-    /* Cria um gradiente na parte de baixo do conteúdo */
-    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    /* Cor de fundo semi-transparente para o efeito de vidro */
+    fill: rgba(26, 26, 46, 0.5); 
+    /* A mágica do desfoque */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
