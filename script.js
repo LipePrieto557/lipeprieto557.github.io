@@ -1,6 +1,48 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // ===================================================================
+    // 0. WIDGET DE PREVISÃO DO TEMPO
+    // ===================================================================
+    function fetchWeather() {
+        const apiKey = '51898ce76016c1827ca07320a861322d';
+        // Usar o ID da cidade é mais preciso. O ID para Jaú, SP, Brasil é 3460829.
+        const cityId = '3460829';
+        const url = `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${apiKey}&units=metric&lang=pt_br`;
+
+        const tempEl = document.getElementById('weather-temp');
+        const descEl = document.getElementById('weather-desc');
+        const iconEl = document.getElementById('weather-icon');
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Não foi possível obter os dados do tempo.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (tempEl) tempEl.textContent = `${Math.round(data.main.temp)}°C`;
+                if (descEl) {
+                    const description = data.weather[0].description;
+                    descEl.textContent = description.charAt(0).toUpperCase() + description.slice(1);
+                }
+                if (iconEl) {
+                    iconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                    iconEl.alt = data.weather[0].description;
+                    iconEl.style.display = 'inline-block';
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar previsão do tempo:', error);
+                if (descEl) descEl.textContent = 'Clima indisponível.';
+                if (tempEl) tempEl.style.display = 'none';
+                if (iconEl) iconEl.style.display = 'none';
+            });
+    }
+    fetchWeather();
+
+
+    // ===================================================================
     // 1. FUNCIONALIDADES GERAIS E NAVBAR
     // ===================================================================
 
@@ -167,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===================================================================
     const bookingForm = document.getElementById('booking-form');
     const bookingDirectWhatsappInfo = document.getElementById('booking-direct-whatsapp-info');
-    
+
     const nameInput = document.getElementById('name');
     const phoneInput = document.getElementById('phone');
     const serviceInput = document.getElementById('service');
@@ -175,12 +217,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const pickupInput = document.getElementById('pickup');
     const totalPriceEl = document.getElementById('total-price');
 
-    if(dateInput) {
+    if (dateInput) {
         const hoje = new Date().toISOString().split('T')[0];
         dateInput.setAttribute('min', hoje);
     }
-    
-    if(phoneInput){
+
+    if (phoneInput) {
         phoneInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '').substring(0, 11);
             if (value.length > 6) value = value.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
@@ -191,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateTotalPrice() {
-        if(!serviceInput || !pickupInput || !totalPriceEl) return;
+        if (!serviceInput || !pickupInput || !totalPriceEl) return;
         let total = 0;
         const selectedOption = serviceInput.options[serviceInput.selectedIndex];
         if (selectedOption && selectedOption.value) {
@@ -206,19 +248,19 @@ document.addEventListener('DOMContentLoaded', function() {
         totalPriceEl.textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-    if(serviceInput) serviceInput.addEventListener('change', updateTotalPrice);
-    if(pickupInput) pickupInput.addEventListener('change', updateTotalPrice);
-    
+    if (serviceInput) serviceInput.addEventListener('change', updateTotalPrice);
+    if (pickupInput) pickupInput.addEventListener('change', updateTotalPrice);
+
     function validateForm() {
         let isValid = true;
         document.querySelectorAll('.form-group.error').forEach(el => el.classList.remove('error'));
 
         function setError(inputId, message) {
             const input = document.getElementById(inputId);
-            if(input && input.parentElement) {
+            if (input && input.parentElement) {
                 input.parentElement.classList.add('error');
                 const errorEl = document.getElementById(`${inputId}-error`);
-                if(errorEl) errorEl.textContent = message;
+                if (errorEl) errorEl.textContent = message;
                 isValid = false;
             }
         }
@@ -228,8 +270,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (serviceInput && serviceInput.value === '') setError('service', 'Por favor, selecione um serviço.');
 
         if (dateInput) {
-            if(dateInput.value === ''){
-                 setError('date', 'Por favor, escolha uma data.');
+            if (dateInput.value === '') {
+                setError('date', 'Por favor, escolha uma data.');
             } else {
                 const selectedDate = new Date(dateInput.value + 'T00:00:00');
                 const today = new Date();
@@ -267,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     bookingForm.style.display = 'none';
                     bookingDirectWhatsappInfo.style.display = 'block';
                     window.scrollTo({ top: bookingDirectWhatsappInfo.offsetTop - 100, behavior: 'smooth' });
-                    
+
                     setTimeout(() => {
                         window.open(whatsappUrl, '_blank');
                     }, 1000);
@@ -285,22 +327,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-        if(typeof updateTotalPrice === 'function') {
+        if (typeof updateTotalPrice === 'function') {
             updateTotalPrice();
         }
     }
-    
+
     // ===================================================================
     // 5. ANIMAÇÕES DA PÁGINA SOBRE NÓS
     // ===================================================================
     if (typeof gsap !== 'undefined' && document.querySelector('.timeline-section')) {
         gsap.registerPlugin(ScrollTrigger);
-        
+
         const milestones = gsap.utils.toArray('.milestone');
         milestones.forEach(milestone => {
-            gsap.fromTo(milestone, 
-                { opacity: 0, x: milestone.classList.contains('milestone-left') ? -100 : 100 }, 
-                { opacity: 1, x: 0, ease: 'power2.out',
+            gsap.fromTo(milestone,
+                { opacity: 0, x: milestone.classList.contains('milestone-left') ? -100 : 100 },
+                {
+                    opacity: 1, x: 0, ease: 'power2.out',
                     scrollTrigger: {
                         trigger: milestone,
                         start: 'top 85%',
@@ -327,22 +370,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===================================================================
     // Só executa se não for um dispositivo de toque
     if (window.matchMedia("(pointer: fine)").matches) {
-        
+
         const heroSection = document.querySelector('.hero-parallax');
-        
+
         if (heroSection) {
             heroSection.addEventListener('mousemove', function(e) {
                 const bg = this.querySelector('.parallax-bg');
                 if (!bg) return;
-                
+
+                // Posição do mouse na tela
                 const x = e.clientX;
                 const y = e.clientY;
-                
-                const strength = 50; 
-                
+
+                // Força do efeito (quanto menor o número, mais forte o movimento)
+                const strength = 50;
+
+                // Calcula o movimento
                 const moveX = -(x / strength);
                 const moveY = -(y / strength);
-                
+
+                // Usa GSAP para uma animação suave
                 gsap.to(bg, {
                     duration: 0.8,
                     x: moveX,
@@ -352,56 +399,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-
-    // ===================================================================
-    // 8. ALERTA DE CLIMA (API OPENWEATHERMAP)
-    // ===================================================================
-    const apiKey = '51898ce76016c1827ca07320a861322d'; // SUA CHAVE JÁ ESTÁ AQUI
-
-    async function fetchWeather() {
-        const weatherBar = document.getElementById('weather-alert-bar');
-        if (!weatherBar) return;
-
-        const city = 'Jaú,BR';
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`;
-
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                console.error("Erro ao buscar dados do tempo. Chave da API pode estar incorreta ou inativa.");
-                return;
-            }
-            const data = await response.json();
-
-            // Atualiza os elementos HTML
-            document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-            document.getElementById('weather-location').textContent = data.name;
-            document.getElementById('weather-temp').textContent = `${Math.round(data.main.temp)}°C`;
-            document.getElementById('weather-description').textContent = data.weather[0].description;
-
-            // Lógica para a mensagem de marketing
-            let message = "Agende seu horário e deixe seu carro brilhando!";
-            const weatherCondition = data.weather[0].main;
-
-            if (['Rain', 'Drizzle', 'Thunderstorm'].includes(weatherCondition)) {
-                message = "Previsão de chuva! Proteja seu carro com nossa cera especial.";
-            } else if (weatherCondition === 'Clear') {
-                message = "Dia de sol perfeito para deixar seu carro brilhando!";
-            } else if (weatherCondition === 'Clouds') {
-                message = "Tempo nublado? Aproveite para dar aquele trato no visual!";
-            }
-
-            document.getElementById('weather-message').textContent = message;
-
-            // Mostra a barra de clima
-            weatherBar.style.display = 'flex';
-
-        } catch (error) {
-            console.error("Houve um erro na requisição do tempo:", error);
-        }
-    }
-
-    // Chama a função para buscar o clima
-    fetchWeather();
-
-}); // Fim do addEventListener de DOMContentLoaded
+});
