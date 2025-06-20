@@ -11,7 +11,9 @@
 
     <meta property="og:title" content="Power Lava-Car - Qualidade e Brilho para seu Veículo">
     <meta property="og:description" content="Tecnologia e cuidado profissional para um brilho incomparável. Agende sua lavagem!">
-    <meta property="og:image" content="URL_DA_IMAGEM_PARA_COMPARTILHAMENTO.jpg"> <meta property="og:url" content="URL_DO_SEU_SITE.com.br"> <meta property="og:type" content="website">
+    <meta property="og:image" content="URL_DA_IMAGEM_PARA_COMPARTILHAMENTO.jpg">
+    <meta property="og:url" content="URL_DO_SEU_SITE.com.br">
+    <meta property="og:type" content="website">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,6 +22,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twentytwenty/0.9.0/css/twentytwenty.min.css" rel="stylesheet" />
 
     <script type="application/ld+json">
     {
@@ -48,16 +52,18 @@
           "closes": "12:00"
         }
       ],
-      "image": "URL_DA_IMAGEM_PARA_COMPARTILHAMENTO.jpg", "url": "URL_DO_SEU_SITE.com.br" }
+      "image": "URL_DA_IMAGEM_PARA_COMPARTILHAMENTO.jpg",
+      "url": "URL_DO_SEU_SITE.com.br"
+    }
     </script>
 </head>
 <body>
 
     <header class="navbar" id="navbar">
         <div class="nav-container container">
-                <a href="index.html" class="nav-logo">
-                    <img src="logotipocompleto.png" alt="Logotipo da Power Lava-Car">
-                </a>
+            <a href="index.html" class="nav-logo">
+                <img src="logotipocompleto.png" alt="Logotipo da Power Lava-Car">
+            </a>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html#hero" class="nav-link">Início</a></li>
                 <li><a href="sobre.html" class="nav-link">Sobre Nós</a></li>
@@ -168,64 +174,16 @@
             </div>
         </section>
 
-        <section class="custom-package" id="custom-package">
+        <section class="antes-depois-section" id="proof">
             <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Monte Seu Pacote Personalizado</h2>
-                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Selecione os serviços que desejar e veja o valor total na hora!</p>
-                <div class="package-builder" data-aos="fade-in" data-aos-delay="200">
-                    <div class="package-options">
-                        <h3>Escolha seus Serviços:</h3>
-                        <ul class="options-list">
-                            <li><label><input type="checkbox" data-price="80"><span>Lavagem Completa</span></label></li>
-                            <li><label><input type="checkbox" data-price="60"><span>Aplicação de Cera Cristalizadora</span></label></li>
-                            <li><label><input type="checkbox" data-price="90"><span>Polimento de Faróis</span></label></li>
-                            <li><label><input type="checkbox" data-price="200"><span>Higienização Interna Completa</span></label></li>
-                            <li><label><input type="checkbox" data-price="50"><span>Higienização do Ar Condicionado</span></label></li>
-                            <li><label><input type="checkbox" data-price="5"><span>Serviço Leva e Traz</span></label></li>
-                        </ul>
-                    </div>
-                    <div class="package-total">
-                        <h3>Seu Pacote:</h3>
-                        <div class="total-display">
-                            <span>Total</span>
-                            <strong id="custom-total-price">R$ 0,00</strong>
-                        </div>
-                        <button id="agendar-pacote-btn" class="cta-button">Agendar Pacote via WhatsApp</button>
-                    </div>
+                <h2 class="section-title" data-aos="fade-up">A Prova da Nossa Qualidade</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Arraste a barra e veja a mágica acontecer.</p>
+                <div id="slider-container" data-aos="fade-up" data-aos-delay="200">
+                    <img src="carro/sujo.jpg" alt="Carro antes da lavagem">
+                    <img src="carro/limpo.jpg" alt="Carro depois da lavagem">
                 </div>
             </div>
         </section>
-
-        <section class="svg-drawing-section">
-            <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Qualidade em Cada Detalhe</h2>
-                <div id="car-drawing-container">
-                    <svg id="car-svg" width="100%" height="100%" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-                        <path id="car-path" d="M150,250 C50,250 50,150 150,150 L250,150 C280,150 300,120 330,120 L470,120 C500,120 520,150 550,150 L650,150 C750,150 750,250 650,250 Z M180,250 L180,280 C180,296.5 193.5,310 210,310 C226.5,310 240,296.5 240,280 L240,250 M560,250 L560,280 C560,296.5 573.5,310 590,310 C606.5,310 620,296.5 620,280 L620,250"
-                        stroke="var(--primary-purple)" stroke-width="5" fill="none" />
-                    </svg>
-                </div>
-            </div>
-        </section>
-
-        <section class="video-section">
-            <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Conheça Nosso Processo</h2>
-                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Veja como cuidamos do seu carro com a máxima atenção e profissionalismo.</p>
-                <div class="video-container" data-aos="fade-in" data-aos-delay="200">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/jOcfQx4CywM?si=mlDQhIJNyEs_bsZp" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                    <div class="video-features">
-                        <div class="feature-item" data-aos="fade-right" data-aos-delay="300"> <i class="fas fa-check-circle"></i> <span>Equipamentos de Última Geração</span> </div>
-                        <div class="feature-item" data-aos="fade-right" data-aos-delay="400"> <i class="fas fa-flask"></i> <span>Produtos Biodegradáveis e Seguros</span> </div>
-                        <div class="feature-item" data-aos="fade-right" data-aos-delay="500"> <i class="fas fa-hand-sparkles"></i> <span>Equipe Especializada e Atenciosa</span> </div>
-                        <div class="feature-item" data-aos="fade-right" data-aos-delay="600"> <i class="fas fa-clock"></i> <span>Agilidade sem Perder a Qualidade</span> </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section class="reviews" id="reviews">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">O que Nossos Clientes Dizem</h2>
@@ -379,42 +337,6 @@
             </div>
         </section>
 
-        <section class="timeline-section">
-            <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Nossa Jornada</h2>
-                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Uma história de paixão por carros e excelência em serviços.</p>
-
-                <div class="timeline">
-                    <div class="timeline-road">
-                        <div class="timeline-road-fill"></div>
-                    </div>
-                    <div class="milestone milestone-left" data-aos="fade-right" data-aos-offset="200">
-                        <div class="milestone-content">
-                            <h3>2020 - O Início</h3>
-                            <p>Fundação da Power Lava-Car com a missão de oferecer o melhor cuidado automotivo na região de Jaú.</p>
-                        </div>
-                    </div>
-                    <div class="milestone milestone-right" data-aos="fade-left" data-aos-offset="200">
-                        <div class="milestone-content">
-                            <h3>2021 - Expansão de Serviços</h3>
-                            <p>Introdução de serviços de higienização interna e polimento de faróis, ampliando nossa oferta e expertise.</p>
-                        </div>
-                    </div>
-                    <div class="milestone milestone-left" data-aos="fade-right" data-aos-offset="200">
-                        <div class="milestone-content">
-                            <h3>2023 - Agendamento Online</h3>
-                            <p>Lançamento do sistema de agendamento online e introdução do serviço de leva e traz para maior comodidade dos clientes.</p>
-                        </div>
-                    </div>
-                    <div class="milestone milestone-right" data-aos="fade-left" data-aos-offset="200">
-                        <div class="milestone-content">
-                            <h3>2025 - Novas Tecnologias</h3>
-                            <p>Investimento em equipamentos de lavagem a seco e produtos eco-friendly, reafirmando nosso compromisso com a inovação e sustentabilidade.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="footer">
@@ -456,10 +378,11 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.event.move/2.0.0/jquery.event.move.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twentytwenty/0.9.0/js/jquery.twentytwenty.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
-
-</body>
+    <script src="script.js"></script> </body>
 </html>
