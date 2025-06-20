@@ -335,18 +335,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const bg = this.querySelector('.parallax-bg');
                 if (!bg) return;
                 
-                // Posição do mouse na tela
                 const x = e.clientX;
                 const y = e.clientY;
                 
-                // Força do efeito (quanto menor o número, mais forte o movimento)
                 const strength = 50; 
                 
-                // Calcula o movimento
                 const moveX = -(x / strength);
                 const moveY = -(y / strength);
                 
-                // Usa GSAP para uma animação suave
                 gsap.to(bg, {
                     duration: 0.8,
                     x: moveX,
@@ -357,4 +353,55 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-});
+    // ===================================================================
+    // 8. ALERTA DE CLIMA (API OPENWEATHERMAP)
+    // ===================================================================
+    const apiKey = '51898ce76016c1827ca07320a861322d'; // SUA CHAVE JÁ ESTÁ AQUI
+
+    async function fetchWeather() {
+        const weatherBar = document.getElementById('weather-alert-bar');
+        if (!weatherBar) return;
+
+        const city = 'Jaú,BR';
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                console.error("Erro ao buscar dados do tempo. Chave da API pode estar incorreta ou inativa.");
+                return;
+            }
+            const data = await response.json();
+
+            // Atualiza os elementos HTML
+            document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            document.getElementById('weather-location').textContent = data.name;
+            document.getElementById('weather-temp').textContent = `${Math.round(data.main.temp)}°C`;
+            document.getElementById('weather-description').textContent = data.weather[0].description;
+
+            // Lógica para a mensagem de marketing
+            let message = "Agende seu horário e deixe seu carro brilhando!";
+            const weatherCondition = data.weather[0].main;
+
+            if (['Rain', 'Drizzle', 'Thunderstorm'].includes(weatherCondition)) {
+                message = "Previsão de chuva! Proteja seu carro com nossa cera especial.";
+            } else if (weatherCondition === 'Clear') {
+                message = "Dia de sol perfeito para deixar seu carro brilhando!";
+            } else if (weatherCondition === 'Clouds') {
+                message = "Tempo nublado? Aproveite para dar aquele trato no visual!";
+            }
+
+            document.getElementById('weather-message').textContent = message;
+
+            // Mostra a barra de clima
+            weatherBar.style.display = 'flex';
+
+        } catch (error) {
+            console.error("Houve um erro na requisição do tempo:", error);
+        }
+    }
+
+    // Chama a função para buscar o clima
+    fetchWeather();
+
+}); // Fim do addEventListener de DOMContentLoaded
