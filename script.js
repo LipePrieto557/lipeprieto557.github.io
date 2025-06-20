@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
         AOS.init({ duration: 1000, once: true, offset: 50 });
     }
 
-    // Lógica da Calculadora de Pacotes (Se existir na página)
+    // Lógica da Calculadora de Pacotes
     const packageOptions = document.querySelectorAll('.options-list input[type="checkbox"]');
     const customTotalPriceEl = document.getElementById('custom-total-price');
     const agendarPacoteBtn = document.getElementById('agendar-pacote-btn');
@@ -325,6 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===================================================================
     // 6. EFEITO PARALLAX DE MOUSE NA SEÇÃO HERO
     // ===================================================================
+    // Só executa se não for um dispositivo de toque
     if (window.matchMedia("(pointer: fine)").matches) {
         
         const heroSection = document.querySelector('.hero-parallax');
@@ -334,14 +335,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 const bg = this.querySelector('.parallax-bg');
                 if (!bg) return;
                 
+                // Posição do mouse na tela
                 const x = e.clientX;
                 const y = e.clientY;
                 
+                // Força do efeito (quanto menor o número, mais forte o movimento)
                 const strength = 50; 
                 
+                // Calcula o movimento
                 const moveX = -(x / strength);
                 const moveY = -(y / strength);
                 
+                // Usa GSAP para uma animação suave
                 gsap.to(bg, {
                     duration: 0.8,
                     x: moveX,
@@ -351,22 +356,5 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-
-    // ===================================================================
-    // 7. INICIALIZAÇÃO DO SLIDER ANTES E DEPOIS
-    // ===================================================================
-    // Usamos $(window).on('load', ...) do jQuery para garantir que as
-    // imagens estejam 100% carregadas antes do script ser ativado.
-    $(window).on("load", function() {
-        if ($("#slider-container").length) { // Verifica se o elemento existe
-            $("#slider-container").twentytwenty({
-                default_offset_pct: 0.5,
-                orientation: 'horizontal',
-                no_overlay: false,
-                move_slider_on_hover: false,
-                move_with_handle_only: true,
-            });
-        }
-    });
 
 });
