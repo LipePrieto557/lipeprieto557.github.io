@@ -1938,3 +1938,27 @@ body.light-mode .highlight-option .option-text {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
+
+/* --- Seção Antes e Depois --- */
+.antes-depois-section {
+    padding: 120px 0;
+    background: var(--gradient-section-bg-2); /* Usa o mesmo fundo de outras seções */
+    text-align: center;
+}
+
+#slider-container {
+    max-width: 900px; /* Ou o tamanho que preferir */
+    margin: 40px auto 0;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Garante que as bordas arredondadas funcionem */
+}
+
+/* Ajuste do tema claro */
+body.light-mode .antes-depois-section {
+    background: #f9fafb;
+}
+
+body.light-mode #slider-container {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
