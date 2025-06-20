@@ -1938,3 +1938,62 @@ body.light-mode .highlight-option .option-text {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
+
+/* --- Barra de Alerta de Clima --- */
+#weather-alert-bar {
+    background: var(--gradient-purple);
+    color: var(--text-white);
+    padding: 12px 0;
+    text-align: center;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1001; /* Fica acima da navbar */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-size: 0.95rem;
+    font-weight: 500;
+    /* Usar display: flex para alinhar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+#weather-icon {
+    width: 40px;
+    height: 40px;
+}
+
+#weather-message {
+    margin-left: 10px;
+    padding: 3px 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 5px;
+}
+
+/* Ajustes para Tema Claro */
+body.light-mode #weather-alert-bar {
+    background: var(--primary-purple);
+}
+
+/* Responsividade */
+@media (max-width: 767px) {
+    .weather-content {
+        flex-direction: column;
+        gap: 5px;
+    }
+    #weather-alert-bar {
+        font-size: 0.85rem;
+        padding: 10px;
+    }
+    #weather-message {
+        margin-top: 5px;
+        display: block;
+    }
+}
