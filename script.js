@@ -355,19 +355,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===================================================================
     // 7. INICIALIZAÇÃO DO SLIDER ANTES E DEPOIS
     // ===================================================================
-    const slider = document.getElementById('slider-container');
-    if (slider) {
-        // Usamos window.onload aqui para garantir que as imagens estejam
-        // 100% carregadas antes do script do slider ser ativado.
-        window.addEventListener('load', function() {
+    // Usamos $(window).on('load', ...) do jQuery para garantir que as
+    // imagens estejam 100% carregadas antes do script ser ativado.
+    $(window).on("load", function() {
+        if ($("#slider-container").length) { // Verifica se o elemento existe
             $("#slider-container").twentytwenty({
-                default_offset_pct: 0.5, // Ponto inicial da barra (0.5 = meio)
-                orientation: 'horizontal', // 'horizontal' ou 'vertical'
-                no_overlay: false, // Mostra o texto "Antes" e "Depois"
-                move_slider_on_hover: false, // A barra só move ao clicar e arrastar
+                default_offset_pct: 0.5,
+                orientation: 'horizontal',
+                no_overlay: false,
+                move_slider_on_hover: false,
                 move_with_handle_only: true,
             });
-        });
-    }
+        }
+    });
 
 });
