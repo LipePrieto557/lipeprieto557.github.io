@@ -4,10 +4,6 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/LipePrieto557/lipeprieto557.github.io)
 ![GitHub last commit](https://img.shields.io/github/last-commit/LipePrieto557/lipeprieto557.github.io)
 
-<p align="center">
-  <img src="assets/img/foto-perfil.png" width="200" alt="Logotipo do Projeto">
-</p>
-
 Este repositório contém o código-fonte do site institucional da **Power Lava Car**, um negócio de estética automotiva. O projeto foi desenvolvido para apresentar a empresa, seus serviços e facilitar o contato de clientes.
 
 > **Nota do Desenvolvedor:** Este foi o primeiro projeto que desenvolvi utilizando tecnologias web, marcando o início da minha jornada na área de desenvolvimento. O processo foi realizado com o auxílio de ferramentas de IA para aprendizado e aceleração, mas com toda a lógica de estrutura, design e funcionalidade pensada e implementada por mim.
