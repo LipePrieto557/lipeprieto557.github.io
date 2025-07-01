@@ -1,6 +1,6 @@
 # Power Lava Car - Website Institucional
 
-![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)
+[![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
 ![GitHub top language](https://img.shields.io/github/languages/top/LipePrieto557/lipeprieto557.github.io)
 ![GitHub last commit](https://img.shields.io/github/last-commit/LipePrieto557/lipeprieto557.github.io)
 
